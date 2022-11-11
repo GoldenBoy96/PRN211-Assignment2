@@ -1,4 +1,5 @@
 using DataAccess.Repository;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace SalesWinApp
 {
@@ -12,6 +13,14 @@ namespace SalesWinApp
         {
             InitializeComponent();
             _memberRepository = new MemberRepository();
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            if (tmpEmail != null)
+            {
+                txtEmail.Text = tmpEmail;
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -42,19 +51,21 @@ namespace SalesWinApp
                             {
                                 txtEmail = tmpEmail
                             };
+                            MessageBox.Show("Login successfully!\nYour role: Admin");
                             this.Hide();
                             frmMain.Show();
                         }
                         else {
                             frmMain frmMain = new();
+                            MessageBox.Show("Login successfully!\nYour role: Admin");
                             this.Hide();
                             frmMain.Show();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Not available yet bruh!");
-                        this.Close();
+                        MessageBox.Show("Login successfully!\nYour role: Normal User");
+                        Application.Exit(); //temporarily wait for further updates
                     }
                 }
                 else
@@ -67,7 +78,7 @@ namespace SalesWinApp
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -89,12 +100,5 @@ namespace SalesWinApp
 
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-            if (tmpEmail != null)
-            {
-                txtEmail.Text = tmpEmail;
-            }
-        }
     }
 }

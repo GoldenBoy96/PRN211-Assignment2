@@ -19,14 +19,15 @@ namespace SalesWinApp
 
         public string txtEmail { get; set; }
 
-        private void frmCustomerAccountManagement_FormClosing(object sender, FormClosingEventArgs e)
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
 
         private void btnMemberManagement_Click(object sender, EventArgs e)
         {
-
+            frmMembers frmMembers = new frmMembers();
+            frmMembers.Show();
         }
 
         private void btnProductManagement_Click(object sender, EventArgs e)
