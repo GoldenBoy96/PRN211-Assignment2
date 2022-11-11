@@ -17,9 +17,11 @@ namespace SalesWinApp
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+        public string txtEmail { get; set; }
 
+        private void frmCustomerAccountManagement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
 
         private void btnMemberManagement_Click(object sender, EventArgs e)
@@ -39,15 +41,34 @@ namespace SalesWinApp
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-
+            if (txtEmail != null)
+            {
+                frmLogin frmLogin = new()
+                {
+                    tmpEmail = txtEmail
+                };
+                this.Hide();
+                frmLogin.Show();
+            }
+            else
+            {
+                frmLogin frmLogin = new();
+                this.Hide();
+                frmLogin.Show();
+            }
         }
 
         private void frmMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
