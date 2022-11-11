@@ -34,6 +34,7 @@
             this.btnProductManagement = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.btnStatistics = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -79,7 +80,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(176, 352);
+            this.btnClose.Location = new System.Drawing.Point(176, 423);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(453, 35);
             this.btnClose.TabIndex = 4;
@@ -97,11 +98,22 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // btnStatistics
+            // 
+            this.btnStatistics.Location = new System.Drawing.Point(176, 351);
+            this.btnStatistics.Name = "btnStatistics";
+            this.btnStatistics.Size = new System.Drawing.Size(453, 35);
+            this.btnStatistics.TabIndex = 6;
+            this.btnStatistics.Text = "Sales Statistics";
+            this.btnStatistics.UseVisualStyleBackColor = true;
+            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 515);
+            this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnProductManagement);
@@ -126,5 +138,6 @@
         private Button btnProductManagement;
         private Button btnClose;
         private Button btnLogout;
+        private Button btnStatistics;
     }
 }

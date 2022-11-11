@@ -1,4 +1,5 @@
 using DataAccess.Repository;
+using SalesWinApp.Normal_User;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace SalesWinApp
@@ -49,7 +50,7 @@ namespace SalesWinApp
                         {
                             frmMain frmMain = new()
                             {
-                                txtEmail = tmpEmail
+                                tmpEmail = tmpEmail
                             };
                             MessageBox.Show("Login successfully!\nYour role: Admin");
                             this.Hide();
@@ -64,8 +65,24 @@ namespace SalesWinApp
                     }
                     else
                     {
-                        MessageBox.Show("Login successfully!\nYour role: Normal User");
-                        Application.Exit(); //temporarily wait for further updates
+                        if (tmpEmail != null)
+                        {
+                            frmUserMain frmMain = new()
+                            {
+                                //tmpEmail = tmpEmail
+                                //chua dung den
+                            };
+                            MessageBox.Show("Login successfully!\nYour role: Normal User");
+                            this.Hide();
+                            frmMain.Show();
+                        }
+                        else
+                        {
+                            frmUserMain frmMain = new();
+                            MessageBox.Show("Login successfully!\nYour role: Normal User");
+                            this.Hide();
+                            frmMain.Show();
+                        }
                     }
                 }
                 else

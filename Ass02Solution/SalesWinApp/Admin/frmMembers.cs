@@ -12,6 +12,7 @@ namespace SalesWinApp
 {
     public partial class frmMembers : Form
     {
+        public string tmpEmail { get; set; }
         public frmMembers()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace SalesWinApp
 
         }
 
+        //nho doi lai thanh CellClick cho de dung hon
         private void dgvMembers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -39,7 +41,21 @@ namespace SalesWinApp
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (tmpEmail != null)
+            {
+                frmMain frmMain = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                this.Close();
+                frmMain.Show();
+            }
+            else
+            {
+                frmMain frmMain = new();
+                this.Close();
+                frmMain.Show();
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

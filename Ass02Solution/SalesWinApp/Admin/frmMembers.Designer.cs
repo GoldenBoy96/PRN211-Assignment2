@@ -81,7 +81,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(341, 435);
+            this.btnClose.Location = new System.Drawing.Point(340, 445);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(120, 35);
             this.btnClose.TabIndex = 4;
@@ -105,16 +105,16 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(221, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(369, 46);
+            this.label1.Size = new System.Drawing.Size(345, 45);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Member Managerment";
+            this.label1.Text = "Member Management";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // frmMembers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 490);
+            this.ClientSize = new System.Drawing.Size(800, 523);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnClose);
@@ -123,6 +123,7 @@
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.dgvMembers);
             this.Name = "frmMembers";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Member Management";
             this.Load += new System.EventHandler(this.frmMembers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembers)).EndInit();
