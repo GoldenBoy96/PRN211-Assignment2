@@ -16,5 +16,40 @@ namespace SalesWinApp
         {
             InitializeComponent();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMemberManagement_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProductManagement_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOrderManagement_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

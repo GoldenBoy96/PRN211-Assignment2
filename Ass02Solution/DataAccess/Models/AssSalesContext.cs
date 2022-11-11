@@ -24,9 +24,6 @@ public partial class AssSalesContext : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //=> optionsBuilder.UseSqlServer(" Server=(local);uid=sa;pwd=123456;database= AssSales;TrustServerCertificate=True ");
-
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -42,7 +39,7 @@ public partial class AssSalesContext : DbContext
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", true, true)
             .Build();
-        var strConn = config["ConnectionStrings:AssSales"];
+        var strConn = config["ConnectionStrings:AssSalesDB"];
         return strConn;
     }
 

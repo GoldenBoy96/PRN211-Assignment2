@@ -6,7 +6,22 @@ using System.Threading.Tasks;
 
 namespace BusinessObject
 {
-    internal class OrderObject
+    public class OrderObject
     {
+        public int OrderId { get; set; }
+
+        public int MemberId { get; set; }
+
+        public DateTime OrderDate { get; set; }
+
+        public DateTime? RequiredDare { get; set; }
+
+        public DateTime? ShippedDate { get; set; }
+
+        public decimal? Freight { get; set; }
+
+        public virtual MemberObject Member { get; set; }
+
+        public virtual OrderDetailObject OrderDetail { get; set; }
     }
 }
