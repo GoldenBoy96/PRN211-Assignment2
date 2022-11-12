@@ -45,12 +45,40 @@ namespace SalesWinApp
 
         private void btnProductManagement_Click(object sender, EventArgs e)
         {
-
+            if (tmpEmail != null)
+            {
+                frmProducts frmProducts = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                this.Hide();
+                frmProducts.Show();
+            }
+            else
+            {
+                frmProducts frmProducts = new();
+                this.Hide();
+                frmProducts.Show();
+            }
         }
 
         private void btnOrderManagement_Click(object sender, EventArgs e)
         {
-
+            if (tmpEmail != null)
+            {
+                frmOrders frmOrders = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                this.Hide();
+                frmOrders.Show();
+            }
+            else
+            {
+                frmOrders frmOrder = new();
+                this.Hide();
+                frmOrder.Show();
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)

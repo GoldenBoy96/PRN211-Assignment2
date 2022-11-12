@@ -67,21 +67,20 @@ namespace SalesWinApp
                     {
                         if (tmpEmail != null)
                         {
-                            frmUserMain frmMain = new()
+                            frmUserMain frmUserMain = new()
                             {
-                                //tmpEmail = tmpEmail
-                                //chua dung den
+                                tmpEmail = tmpEmail
                             };
                             MessageBox.Show("Login successfully!\nYour role: Normal User");
                             this.Hide();
-                            frmMain.Show();
+                            frmUserMain.Show();
                         }
                         else
                         {
-                            frmUserMain frmMain = new();
+                            frmUserMain frmUserMain = new();
                             MessageBox.Show("Login successfully!\nYour role: Normal User");
                             this.Hide();
-                            frmMain.Show();
+                            frmUserMain.Show();
                         }
                     }
                 }

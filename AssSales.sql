@@ -25,7 +25,7 @@ CREATE TABLE Member (
 )
 
 INSERT INTO Member VALUES(N'admin@fstore.com', N'FPT', N'Ho Chi Minh', N'Vietnam', N'admin@@')
-INSERT INTO Member VALUES(N'customer@fstore.com', N'Earth', N'Ho Chi Minh', N'Vietnam', N'123456')
+INSERT INTO Member VALUES(N'customer@gmail.com', N'Earth', N'Ho Chi Minh', N'Vietnam', N'123456')
 
 GO
 CREATE TABLE [Order] (

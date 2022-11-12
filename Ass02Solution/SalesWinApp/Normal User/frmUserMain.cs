@@ -12,9 +12,57 @@ namespace SalesWinApp.Normal_User
 {
     public partial class frmUserMain : Form
     {
+        public string tmpEmail { get; set; }
+
         public frmUserMain()
         {
             InitializeComponent();
         }
+
+        private void frmUserMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            if (tmpEmail != null)
+            {
+                frmLogin frmLogin = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                this.Hide();
+                frmLogin.Show();
+            }
+            else
+            {
+                frmLogin frmLogin = new();
+                this.Hide();
+                frmLogin.Show();
+            }
+        }
+
+        
     }
 }
