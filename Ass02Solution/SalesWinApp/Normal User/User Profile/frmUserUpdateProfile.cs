@@ -100,21 +100,7 @@ namespace SalesWinApp.Normal_User
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (tmpEmail != null)
-            {
-                frmUserProfile frmUserProfile = new()
-                {
-                    tmpEmail = tmpEmail
-                };
-                this.Close();
-                frmUserProfile.Show();
-            }
-            else
-            {
-                frmUserProfile frmUserProfile = new();
-                this.Close();
-                frmUserProfile.Show();
-            }
+            this.Close();
         }
 
         private void frmUserUpdateProfile_Load(object sender, EventArgs e)
@@ -133,6 +119,23 @@ namespace SalesWinApp.Normal_User
         private void txtSubmitPassword_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmUserUpdateProfile_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (tmpEmail != null)
+            {
+                frmUserProfile frmUserProfile = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                frmUserProfile.Show();
+            }
+            else
+            {
+                frmUserProfile frmUserProfile = new();
+                frmUserProfile.Show();
+            }
         }
     }
 }

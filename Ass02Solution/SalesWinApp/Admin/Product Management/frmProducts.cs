@@ -31,21 +31,7 @@ namespace SalesWinApp
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (tmpEmail != null)
-            {
-                frmMain frmMain = new()
-                {
-                    tmpEmail = tmpEmail
-                };
-                this.Close();
-                frmMain.Show();
-            }
-            else
-            {
-                frmMain frmMain = new();
-                this.Close();
-                frmMain.Show();
-            }
+            this.Close();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -86,6 +72,23 @@ namespace SalesWinApp
         private void btnSearch_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmProducts_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (tmpEmail != null)
+            {
+                frmMain frmMain = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                frmMain.Show();
+            }
+            else
+            {
+                frmMain frmMain = new();
+                frmMain.Show();
+            }
         }
     }
 }

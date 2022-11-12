@@ -47,7 +47,7 @@
             this.dgvMembers.RowTemplate.Height = 29;
             this.dgvMembers.Size = new System.Drawing.Size(729, 240);
             this.dgvMembers.TabIndex = 0;
-            this.dgvMembers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMembers_CellContentClick);
+            this.dgvMembers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMembers_CellClick);
             // 
             // btnCreate
             // 
@@ -125,6 +125,7 @@
             this.Name = "frmMembers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Member Management";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMembers_FormClosing);
             this.Load += new System.EventHandler(this.frmMembers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembers)).EndInit();
             this.ResumeLayout(false);

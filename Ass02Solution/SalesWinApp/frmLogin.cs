@@ -94,7 +94,7 @@ namespace SalesWinApp
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
         private void label1_Click(object sender, EventArgs e)
         {

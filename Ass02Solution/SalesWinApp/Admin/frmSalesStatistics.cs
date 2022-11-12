@@ -56,26 +56,29 @@ namespace SalesWinApp.Admin
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void frmSalesStatistics_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmSalesStatistics_FormClosing(object sender, FormClosingEventArgs e)
+        {
             if (tmpEmail != null)
             {
                 frmMain frmMain = new()
                 {
                     tmpEmail = tmpEmail
                 };
-                this.Close();
                 frmMain.Show();
             }
             else
             {
                 frmMain frmMain = new();
-                this.Close();
                 frmMain.Show();
             }
-        }
-
-        private void frmSalesStatistics_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

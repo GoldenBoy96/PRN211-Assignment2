@@ -189,6 +189,7 @@
             this.Name = "frmUserProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Profile";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUserProfile_FormClosing);
             this.Load += new System.EventHandler(this.frmUserProfile_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

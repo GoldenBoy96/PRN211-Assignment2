@@ -133,6 +133,7 @@
             this.Name = "frmSalesStatistics";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sales Statistics";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSalesStatistics_FormClosing);
             this.Load += new System.EventHandler(this.frmSalesStatistics_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).EndInit();
             this.ResumeLayout(false);

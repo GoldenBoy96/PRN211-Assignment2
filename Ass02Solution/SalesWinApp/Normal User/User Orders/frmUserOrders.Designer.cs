@@ -78,6 +78,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Orders";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUserOrders_FormClosing);
             this.Load += new System.EventHandler(this.frmUserOrders_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembers)).EndInit();
             this.ResumeLayout(false);

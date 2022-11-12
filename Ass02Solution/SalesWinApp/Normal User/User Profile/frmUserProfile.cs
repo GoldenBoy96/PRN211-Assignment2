@@ -44,13 +44,13 @@ namespace SalesWinApp.Normal_User
                     _memberRepository = _memberRepository,
                     Member = Member
                 };
-                this.Close();
+                this.Hide();
                 frmUserUpdateProfile.Show();
             }
             else
             {
                 frmUserMain frmUserMain = new();
-                this.Close();
+                this.Hide();
                 frmUserMain.Show();
             }
         }
@@ -97,21 +97,7 @@ namespace SalesWinApp.Normal_User
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (tmpEmail != null)
-            {
-                frmUserMain frmUserMain = new()
-                {
-                    tmpEmail = tmpEmail
-                };
-                this.Close();
-                frmUserMain.Show();
-            }
-            else
-            {
-                frmUserMain frmUserMain = new();
-                this.Close();
-                frmUserMain.Show();
-            }
+            this.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -142,6 +128,23 @@ namespace SalesWinApp.Normal_User
                 txtPassword.Text = HidePass;
             }
             count++;
+        }
+
+        private void frmUserProfile_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (tmpEmail != null)
+            {
+                frmUserMain frmUserMain = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                frmUserMain.Show();
+            }
+            else
+            {
+                frmUserMain frmUserMain = new();
+                frmUserMain.Show();
+            }
         }
     }
 }

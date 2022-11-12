@@ -31,26 +31,29 @@ namespace SalesWinApp.Normal_User
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void frmUserOrders_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmUserOrders_FormClosing(object sender, FormClosingEventArgs e)
+        {
             if (tmpEmail != null)
             {
                 frmUserMain frmUserMain = new()
                 {
                     tmpEmail = tmpEmail
                 };
-                this.Close();
                 frmUserMain.Show();
             }
             else
             {
                 frmUserMain frmUserMain = new();
-                this.Close();
                 frmUserMain.Show();
             }
-        }
-
-        private void frmUserOrders_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

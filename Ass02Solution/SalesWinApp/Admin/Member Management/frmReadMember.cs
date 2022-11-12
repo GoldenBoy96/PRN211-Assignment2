@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,45 @@ namespace SalesWinApp.Admin.Member_Management
 {
     public partial class frmReadMember : Form
     {
+        public string tmpEmail { get; set; }
+
+        public Member Member { get; set; }
+
         public frmReadMember()
         {
             InitializeComponent();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmReadMember_Load(object sender, EventArgs e)
+        {
+            txtMemberID.Text = Member.MemberId.ToString();
+            txtEmail.Text = Member.Email;
+            txtPassword.Text = Member.Password;
+            txtCompanyName.Text = Member.CompanyName;
+            txtCity.Text = Member.City;
+            txtCountry.Text = Member.Country;
+        }
+
+        private void frmReadMember_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (tmpEmail != null)
+            {
+                frmMembers frmMembers = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                frmMembers.Show();
+            }
+            else
+            {
+                frmMembers frmMembers = new();
+                frmMembers.Show();
+            }
         }
     }
 }

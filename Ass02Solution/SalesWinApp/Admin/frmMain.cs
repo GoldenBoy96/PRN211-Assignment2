@@ -22,7 +22,7 @@ namespace SalesWinApp
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         private void btnMemberManagement_Click(object sender, EventArgs e)
