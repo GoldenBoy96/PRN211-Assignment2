@@ -41,7 +41,7 @@
             // dgvMembers
             // 
             this.dgvMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMembers.Location = new System.Drawing.Point(33, 91);
+            this.dgvMembers.Location = new System.Drawing.Point(36, 100);
             this.dgvMembers.Name = "dgvMembers";
             this.dgvMembers.RowHeadersWidth = 51;
             this.dgvMembers.RowTemplate.Height = 29;
@@ -51,7 +51,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(254, 372);
+            this.btnCreate.Location = new System.Drawing.Point(257, 381);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(120, 35);
             this.btnCreate.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(430, 372);
+            this.btnUpdate.Location = new System.Drawing.Point(433, 381);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(120, 35);
             this.btnUpdate.TabIndex = 2;
@@ -71,7 +71,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(597, 372);
+            this.btnDelete.Location = new System.Drawing.Point(600, 381);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(120, 35);
             this.btnDelete.TabIndex = 3;
@@ -81,7 +81,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(340, 445);
+            this.btnClose.Location = new System.Drawing.Point(343, 454);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(120, 35);
             this.btnClose.TabIndex = 4;
@@ -91,7 +91,7 @@
             // 
             // btnRead
             // 
-            this.btnRead.Location = new System.Drawing.Point(80, 372);
+            this.btnRead.Location = new System.Drawing.Point(83, 381);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(120, 35);
             this.btnRead.TabIndex = 5;
@@ -103,7 +103,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(221, 24);
+            this.label1.Location = new System.Drawing.Point(233, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(345, 45);
             this.label1.TabIndex = 6;
@@ -114,7 +114,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 523);
+            this.ClientSize = new System.Drawing.Size(800, 522);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnClose);

@@ -70,6 +70,21 @@ namespace SalesWinApp
 
         private void frmProducts_Load(object sender, EventArgs e)
         {
+            txtSearchCatagory.SelectedIndex = 0;
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearchCatagory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
 
         }
     }

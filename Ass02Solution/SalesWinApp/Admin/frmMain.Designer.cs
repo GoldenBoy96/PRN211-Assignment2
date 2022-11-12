@@ -60,7 +60,7 @@
             // 
             // btnOrderManagement
             // 
-            this.btnOrderManagement.Location = new System.Drawing.Point(176, 279);
+            this.btnOrderManagement.Location = new System.Drawing.Point(176, 277);
             this.btnOrderManagement.Name = "btnOrderManagement";
             this.btnOrderManagement.Size = new System.Drawing.Size(453, 35);
             this.btnOrderManagement.TabIndex = 2;
@@ -80,7 +80,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(176, 423);
+            this.btnClose.Location = new System.Drawing.Point(176, 422);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(453, 35);
             this.btnClose.TabIndex = 4;
@@ -100,7 +100,7 @@
             // 
             // btnStatistics
             // 
-            this.btnStatistics.Location = new System.Drawing.Point(176, 351);
+            this.btnStatistics.Location = new System.Drawing.Point(176, 350);
             this.btnStatistics.Name = "btnStatistics";
             this.btnStatistics.Size = new System.Drawing.Size(453, 35);
             this.btnStatistics.TabIndex = 6;

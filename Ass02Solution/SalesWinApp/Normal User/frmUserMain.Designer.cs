@@ -97,6 +97,7 @@
             this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.label1);
             this.Name = "frmUserMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUserMain_FormClosing);
             this.ResumeLayout(false);

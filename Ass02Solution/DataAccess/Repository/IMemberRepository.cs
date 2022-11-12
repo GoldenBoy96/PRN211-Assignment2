@@ -10,6 +10,8 @@ namespace DataAccess.Repository
     public interface IMemberRepository
     {
         List<Member> GetMembers();
+
+        void Update(string email);
     }
 
 }

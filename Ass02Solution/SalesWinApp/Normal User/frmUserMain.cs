@@ -41,7 +41,21 @@ namespace SalesWinApp.Normal_User
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-
+            if (tmpEmail != null)
+            {
+                frmUserProfile frmUserProfile = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                this.Hide();
+                frmUserProfile.Show();
+            }
+            else
+            {
+                frmUserProfile frmUserProfile = new();
+                this.Hide();
+                frmUserProfile.Show();
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -63,6 +77,5 @@ namespace SalesWinApp.Normal_User
             }
         }
 
-        
     }
 }

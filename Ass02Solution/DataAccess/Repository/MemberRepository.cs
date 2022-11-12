@@ -18,5 +18,10 @@ namespace DataAccess.Repository
         }
 
         public List<Member> GetMembers() => this._db.Members.ToList();
+
+        public void Update(string email)
+        {
+            _db.SaveChanges();
+        }
     }
 }

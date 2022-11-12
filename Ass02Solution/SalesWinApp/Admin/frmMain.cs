@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesWinApp.Admin;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -117,7 +118,21 @@ namespace SalesWinApp
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
-
+            if (tmpEmail != null)
+            {
+                frmSalesStatistics frmSalesStatistics = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                this.Hide();
+                frmSalesStatistics.Show();
+            }
+            else
+            {
+                frmSalesStatistics frmSalesStatistics = new();
+                this.Hide();
+                frmSalesStatistics.Show();
+            }
         }
     }
 }
