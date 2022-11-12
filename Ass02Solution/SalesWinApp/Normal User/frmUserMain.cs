@@ -36,7 +36,21 @@ namespace SalesWinApp.Normal_User
 
         private void btnOrders_Click(object sender, EventArgs e)
         {
-
+            if (tmpEmail != null)
+            {
+                frmUserOrders frmUserOrders = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                this.Hide();
+                frmUserOrders.Show();
+            }
+            else
+            {
+                frmUserOrders frmUserOrders = new();
+                this.Hide();
+                frmUserOrders.Show();
+            }
         }
 
         private void btnProfile_Click(object sender, EventArgs e)

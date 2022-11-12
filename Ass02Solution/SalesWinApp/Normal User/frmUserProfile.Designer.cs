@@ -188,7 +188,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmUserProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User Profile";
+            this.Text = "Profile";
             this.Load += new System.EventHandler(this.frmUserProfile_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
