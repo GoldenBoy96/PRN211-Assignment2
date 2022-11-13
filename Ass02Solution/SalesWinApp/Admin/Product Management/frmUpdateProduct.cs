@@ -12,9 +12,38 @@ namespace SalesWinApp.Admin.Product_Management
 {
     public partial class frmUpdateProduct : Form
     {
+        public string tmpEmail { get; set; }
+
         public frmUpdateProduct()
         {
             InitializeComponent();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmUpdateProduct_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (tmpEmail != null)
+            {
+                frmProducts frmProducts = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                frmProducts.Show();
+            }
+            else
+            {
+                frmProducts frmProducts = new();
+                frmProducts.Show();
+            }
+        }
+
+        private void frmUpdateProduct_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesWinApp.Admin.Product_Management;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +27,21 @@ namespace SalesWinApp
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-
+            if (tmpEmail != null)
+            {
+                frmReadProduct frmReadProduct = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                this.Hide();
+                frmReadProduct.Show();
+            }
+            else
+            {
+                frmReadProduct frmReadProduct = new();
+                this.Hide();
+                frmReadProduct.Show();
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -41,12 +56,40 @@ namespace SalesWinApp
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            if (tmpEmail != null)
+            {
+                frmUpdateProduct frmUpdateProduct = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                this.Hide();
+                frmUpdateProduct.Show();
+            }
+            else
+            {
+                frmUpdateProduct frmUpdateProduct = new();
+                this.Hide();
+                frmUpdateProduct.Show();
+            }
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-
+            if (tmpEmail != null)
+            {
+                frmAddProduct frmAddProduct = new()
+                {
+                    tmpEmail = tmpEmail
+                };
+                this.Hide();
+                frmAddProduct.Show();
+            }
+            else
+            {
+                frmAddProduct frmAddProduct = new();
+                this.Hide();
+                frmAddProduct.Show();
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
