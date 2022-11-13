@@ -177,5 +177,10 @@ namespace SalesWinApp
                 frmMain.Show();
             }
         }
+
+        private void dgvMembers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            this.dgvMembers.Columns["Orders"].Visible = false;
+        }
     }
 }

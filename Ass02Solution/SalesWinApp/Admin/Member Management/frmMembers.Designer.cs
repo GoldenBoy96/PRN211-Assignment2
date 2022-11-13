@@ -48,6 +48,7 @@
             this.dgvMembers.Size = new System.Drawing.Size(729, 240);
             this.dgvMembers.TabIndex = 0;
             this.dgvMembers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMembers_CellClick);
+            this.dgvMembers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvMembers_DataBindingComplete);
             // 
             // btnCreate
             // 
