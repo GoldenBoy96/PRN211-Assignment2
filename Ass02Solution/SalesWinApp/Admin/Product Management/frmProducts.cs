@@ -1,4 +1,6 @@
-﻿using SalesWinApp.Admin.Product_Management;
+﻿using DataAccess.Models;
+using DataAccess.Repository;
+using SalesWinApp.Admin.Product_Management;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,16 +15,24 @@ namespace SalesWinApp
 {
     public partial class frmProducts : Form
     {
+        public IProductRepository _productRepository;
+        public IOrderDetailRepository _orderDetailRepository;
+
+        BindingSource _source;
+
+        public Product CurrentGrid = new();
+        public int CurrentRow { get; set; }
+        public int CurrentColumn { get; set; }
+        public int searchCategory { get; set; }
+        public string searchValue { get; set; }
+
         public string tmpEmail { get; set; }
 
         public frmProducts()
         {
+            _productRepository = new ProductRepository();
+            _orderDetailRepository = new OrderDetailRepository();
             InitializeComponent();
-        }
-
-        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btnRead_Click(object sender, EventArgs e)
@@ -31,6 +41,11 @@ namespace SalesWinApp
             {
                 frmReadProduct frmReadProduct = new()
                 {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    searchCategory = txtSearchCatagory.SelectedIndex,
+                    searchValue = txtSearch.Text,
+                    Product = CurrentGrid,
                     tmpEmail = tmpEmail
                 };
                 this.Hide();
@@ -38,7 +53,14 @@ namespace SalesWinApp
             }
             else
             {
-                frmReadProduct frmReadProduct = new();
+                frmReadProduct frmReadProduct = new()
+                {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    searchCategory = txtSearchCatagory.SelectedIndex,
+                    searchValue = txtSearch.Text,
+                    Product = CurrentGrid
+                };
                 this.Hide();
                 frmReadProduct.Show();
             }
@@ -51,7 +73,16 @@ namespace SalesWinApp
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            var check = _orderDetailRepository.GetOrderDetails().FirstOrDefault(c => c.ProductId == CurrentGrid.ProductId);
+            if (check == null)
+            {
+                _productRepository.Delete(CurrentGrid.ProductId);
+                btnSearch_Click(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("This product cannot be deleted because there is an Order that involves it!");
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -60,6 +91,11 @@ namespace SalesWinApp
             {
                 frmUpdateProduct frmUpdateProduct = new()
                 {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    searchCategory = txtSearchCatagory.SelectedIndex,
+                    searchValue = txtSearch.Text,
+                    Product = CurrentGrid,
                     tmpEmail = tmpEmail
                 };
                 this.Hide();
@@ -67,7 +103,14 @@ namespace SalesWinApp
             }
             else
             {
-                frmUpdateProduct frmUpdateProduct = new();
+                frmUpdateProduct frmUpdateProduct = new()
+                {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    searchCategory = txtSearchCatagory.SelectedIndex,
+                    searchValue = txtSearch.Text,
+                    Product = CurrentGrid
+                };
                 this.Hide();
                 frmUpdateProduct.Show();
             }
@@ -79,6 +122,10 @@ namespace SalesWinApp
             {
                 frmAddProduct frmAddProduct = new()
                 {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    searchCategory = txtSearchCatagory.SelectedIndex,
+                    searchValue = txtSearch.Text,
                     tmpEmail = tmpEmail
                 };
                 this.Hide();
@@ -86,7 +133,13 @@ namespace SalesWinApp
             }
             else
             {
-                frmAddProduct frmAddProduct = new();
+                frmAddProduct frmAddProduct = new()
+                {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    searchValue = txtSearch.Text,
+                    searchCategory = txtSearchCatagory.SelectedIndex
+                };
                 this.Hide();
                 frmAddProduct.Show();
             }
@@ -99,7 +152,186 @@ namespace SalesWinApp
 
         private void frmProducts_Load(object sender, EventArgs e)
         {
-            txtSearchCatagory.SelectedIndex = 0;
+            txtSearch.Text = searchValue;
+            txtSearchCatagory.SelectedIndex = searchCategory;
+            Search();
+            dgvProducts.CurrentCell = dgvProducts.Rows[CurrentRow].Cells[CurrentColumn];
+            CurrentGrid.ProductId = int.Parse(dgvProducts.Rows[CurrentRow].Cells[0].Value.ToString());
+            CurrentGrid.ProductName = dgvProducts.Rows[CurrentRow].Cells[1].Value.ToString();
+            CurrentGrid.Weight = dgvProducts.Rows[CurrentRow].Cells[2].Value.ToString();
+            CurrentGrid.UnitPrice = decimal.Parse(dgvProducts.Rows[CurrentRow].Cells[3].Value.ToString());
+            CurrentGrid.UnitsInStock = int.Parse(dgvProducts.Rows[CurrentRow].Cells[4].Value.ToString());
+        }
+
+        private void LoadAllProductsSearchByID()
+        {
+            var allProducts = _productRepository.GetProducts().Where(c => c.ProductId.ToString().Contains(txtSearch.Text));
+            var check = _productRepository.GetProducts().FirstOrDefault(c => c.ProductId.ToString().Contains(txtSearch.Text));
+            if (check != null)
+            {
+                try
+                {
+                    _source = new BindingSource();
+                    _source.DataSource = allProducts;
+
+                    dgvProducts.DataSource = null;
+                    dgvProducts.DataSource = _source;
+
+                    if (allProducts.Count() == 0)
+                    {
+                        btnRead.Enabled = false;
+                        btnDelete.Enabled = false;
+                        btnUpdate.Enabled = false;
+                    }
+                    else
+                    {
+                        btnRead.Enabled = true;
+                        btnUpdate.Enabled = true;
+                        btnDelete.Enabled = true;
+                        CurrentGrid.ProductId = int.Parse(dgvProducts.Rows[0].Cells[0].Value.ToString());
+                        CurrentGrid.ProductName = dgvProducts.Rows[0].Cells[1].Value.ToString();
+                        CurrentGrid.Weight = dgvProducts.Rows[0].Cells[2].Value.ToString();
+                        CurrentGrid.UnitPrice = decimal.Parse(dgvProducts.Rows[0].Cells[3].Value.ToString());
+                        CurrentGrid.UnitsInStock = int.Parse(dgvProducts.Rows[0].Cells[4].Value.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No result!");
+            }
+        }
+
+        private void LoadAllProductsSearchByName()
+        {
+            var allProducts = _productRepository.GetProducts().Where(c => c.ProductName.Contains(txtSearch.Text));
+            var check = _productRepository.GetProducts().FirstOrDefault(c => c.ProductName.Contains(txtSearch.Text));
+
+            if (check != null)
+            {
+                try
+                {
+                    _source = new BindingSource();
+                    _source.DataSource = allProducts;
+
+                    dgvProducts.DataSource = null;
+                    dgvProducts.DataSource = _source;
+
+                    if (allProducts.Count() == 0)
+                    {
+                        btnRead.Enabled = false;
+                        btnDelete.Enabled = false;
+                        btnUpdate.Enabled = false;
+                    }
+                    else
+                    {
+                        btnRead.Enabled = true;
+                        btnUpdate.Enabled = true;
+                        btnDelete.Enabled = true;
+                        CurrentGrid.ProductId = int.Parse(dgvProducts.Rows[0].Cells[0].Value.ToString());
+                        CurrentGrid.ProductName = dgvProducts.Rows[0].Cells[1].Value.ToString();
+                        CurrentGrid.Weight = dgvProducts.Rows[0].Cells[2].Value.ToString();
+                        CurrentGrid.UnitPrice = decimal.Parse(dgvProducts.Rows[0].Cells[3].Value.ToString());
+                        CurrentGrid.UnitsInStock = int.Parse(dgvProducts.Rows[0].Cells[4].Value.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No result!");
+            }
+        }
+        private void LoadAllProductsSearchByUnitPrice()
+        {
+            var allProducts = _productRepository.GetProducts().Where(c => c.UnitPrice.ToString().Contains(txtSearch.Text));
+            var check = _productRepository.GetProducts().FirstOrDefault(c => c.UnitPrice.ToString().Contains(txtSearch.Text));
+            if (check != null) {
+                try
+                {
+                    _source = new BindingSource();
+                    _source.DataSource = allProducts;
+
+                    dgvProducts.DataSource = null;
+                    dgvProducts.DataSource = _source;
+
+                    if (allProducts.Count() == 0)
+                    {
+                        btnRead.Enabled = false;
+                        btnDelete.Enabled = false;
+                        btnUpdate.Enabled = false;
+                    }
+                    else
+                    {
+                        btnRead.Enabled = true;
+                        btnUpdate.Enabled = true;
+                        btnDelete.Enabled = true;
+                        CurrentGrid.ProductId = int.Parse(dgvProducts.Rows[0].Cells[0].Value.ToString());
+                        CurrentGrid.ProductName = dgvProducts.Rows[0].Cells[1].Value.ToString();
+                        CurrentGrid.Weight = dgvProducts.Rows[0].Cells[2].Value.ToString();
+                        CurrentGrid.UnitPrice = decimal.Parse(dgvProducts.Rows[0].Cells[3].Value.ToString());
+                        CurrentGrid.UnitsInStock = int.Parse(dgvProducts.Rows[0].Cells[4].Value.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No result!");
+            }
+        }
+        private void LoadAllProductsSearchByUnitsInStock()
+        {
+            var allProducts = _productRepository.GetProducts().Where(c => c.UnitsInStock.ToString().Contains(txtSearch.Text));
+            var check = _productRepository.GetProducts().FirstOrDefault(c => c.UnitsInStock.ToString().Contains(txtSearch.Text));
+
+            if (check != null)
+            {
+                try
+                {
+                    _source = new BindingSource();
+                    _source.DataSource = allProducts;
+
+                    dgvProducts.DataSource = null;
+                    dgvProducts.DataSource = _source;
+
+                    if (allProducts.Count() == 0)
+                    {
+                        btnRead.Enabled = false;
+                        btnDelete.Enabled = false;
+                        btnUpdate.Enabled = false;
+                    }
+                    else
+                    {
+                        btnRead.Enabled = true;
+                        btnUpdate.Enabled = true;
+                        btnDelete.Enabled = true;
+                        CurrentGrid.ProductId = int.Parse(dgvProducts.Rows[0].Cells[0].Value.ToString());
+                        CurrentGrid.ProductName = dgvProducts.Rows[0].Cells[1].Value.ToString();
+                        CurrentGrid.Weight = dgvProducts.Rows[0].Cells[2].Value.ToString();
+                        CurrentGrid.UnitPrice = decimal.Parse(dgvProducts.Rows[0].Cells[3].Value.ToString());
+                        CurrentGrid.UnitsInStock = int.Parse(dgvProducts.Rows[0].Cells[4].Value.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No result!");
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -112,9 +344,31 @@ namespace SalesWinApp
 
         }
 
+        private void Search()
+        {
+            if (txtSearchCatagory.Text == "By ID")
+            {
+                LoadAllProductsSearchByID();
+            }
+            else if (txtSearchCatagory.Text == "By Name")
+            {
+                LoadAllProductsSearchByName();
+            }
+            else if (txtSearchCatagory.Text == "By UnitPrice")
+            {
+                LoadAllProductsSearchByUnitPrice();
+            }
+            else if (txtSearchCatagory.Text == "By UnitsInStock")
+            {
+                LoadAllProductsSearchByUnitsInStock();
+            }
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            Search();
+            CurrentRow = 0;
+            CurrentColumn = 0;
         }
 
         private void frmProducts_FormClosing(object sender, FormClosingEventArgs e)
@@ -132,6 +386,35 @@ namespace SalesWinApp
                 frmMain frmMain = new();
                 frmMain.Show();
             }
+        }
+
+        private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < _productRepository.GetProducts().Count)
+            {
+                btnRead.Enabled = true;
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true;
+                CurrentRow = e.RowIndex;
+                CurrentColumn = e.ColumnIndex;
+                CurrentGrid.ProductId = int.Parse(dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString());
+                CurrentGrid.ProductName = dgvProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
+                CurrentGrid.Weight = dgvProducts.Rows[e.RowIndex].Cells[2].Value.ToString();
+                CurrentGrid.UnitPrice = decimal.Parse(dgvProducts.Rows[e.RowIndex].Cells[3].Value.ToString());
+                CurrentGrid.UnitsInStock = int.Parse(dgvProducts.Rows[e.RowIndex].Cells[4].Value.ToString());
+
+            }
+            else
+            {
+                btnRead.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+            }
+        }
+
+        private void dgvProducts_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            this.dgvProducts.Columns[5].Visible = false;
         }
     }
 }

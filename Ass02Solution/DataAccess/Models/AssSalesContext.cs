@@ -77,7 +77,7 @@ public partial class AssSalesContext : DbContext
 
             entity.Property(e => e.Freight).HasColumnType("money");
             entity.Property(e => e.OrderDate).HasColumnType("datetime");
-            entity.Property(e => e.RequiredDare).HasColumnType("datetime");
+            entity.Property(e => e.RequiredDate).HasColumnType("datetime");
             entity.Property(e => e.ShippedDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.Member).WithMany(p => p.Orders)

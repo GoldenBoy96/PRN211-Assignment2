@@ -1,4 +1,6 @@
-﻿using SalesWinApp.Admin.Order_Management;
+﻿using DataAccess.Models;
+using DataAccess.Repository;
+using SalesWinApp.Admin.Order_Management;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,32 +15,49 @@ namespace SalesWinApp
 {
     public partial class frmOrders : Form
     {
+        public IOrderRepository _orderRepository;
+        public IOrderDetailRepository _orderDetailRepository;
+
+        BindingSource _source;
+
+        public Order CurrentGrid = new();
+
         public string tmpEmail { get; set; }
+        public int CurrentRow { get; set; }
+        public int CurrentColumn { get; set; }
 
         public frmOrders()
         {
             InitializeComponent();
-        }
-
-        private void dgvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            _orderRepository = new OrderRepository();
+            _orderDetailRepository = new OrderDetailRepository();
         }
 
         private void btnRead_Click(object sender, EventArgs e)
         {
+
             if (tmpEmail != null)
             {
                 frmReadOrder frmReadOrder = new()
                 {
-                    tmpEmail = tmpEmail
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    typeOfOrderPage = 1,
+                    tmpEmail = tmpEmail,
+                    Order = CurrentGrid
                 };
                 this.Hide();
                 frmReadOrder.Show();
             }
             else
             {
-                frmReadOrder frmReadOrder = new();
+                frmReadOrder frmReadOrder = new()
+                {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    typeOfOrderPage = 1,
+                    Order = CurrentGrid
+                };
                 this.Hide();
                 frmReadOrder.Show();
             }
@@ -51,7 +70,9 @@ namespace SalesWinApp
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            _orderDetailRepository.Delete(CurrentGrid.OrderId);
+            _orderRepository.Delete(CurrentGrid.OrderId);
+            LoadAllOrders();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -60,14 +81,22 @@ namespace SalesWinApp
             {
                 frmUpdateOrder frmUpdateOrder = new()
                 {
-                    tmpEmail = tmpEmail
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    tmpEmail = tmpEmail,
+                    Order = CurrentGrid
                 };
                 this.Hide();
                 frmUpdateOrder.Show();
             }
             else
             {
-                frmUpdateOrder frmUpdateOrder = new();
+                frmUpdateOrder frmUpdateOrder = new()
+                {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    Order = CurrentGrid
+                };
                 this.Hide();
                 frmUpdateOrder.Show();
             }
@@ -79,6 +108,8 @@ namespace SalesWinApp
             {
                 frmAddOrder frmAddOrder = new()
                 {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
                     tmpEmail = tmpEmail
                 };
                 this.Hide();
@@ -86,7 +117,12 @@ namespace SalesWinApp
             }
             else
             {
-                frmAddOrder frmAddOrder = new();
+                frmAddOrder frmAddOrder = new()
+                {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn
+                };
+                
                 this.Hide();
                 frmAddOrder.Show();
             }
@@ -97,9 +133,68 @@ namespace SalesWinApp
 
         }
 
+        private void LoadAllOrders()
+        {
+            var allOrders = _orderRepository.GetOrders();
+            try
+            {
+                _source = new BindingSource();
+                _source.DataSource = allOrders;
+
+                dgvOrders.DataSource = null;
+                dgvOrders.DataSource = _source;
+
+                if (allOrders.Count() == 0)
+                {
+                    btnRead.Enabled = false;
+                    btnDelete.Enabled = false;
+                    btnUpdate.Enabled = false;
+                }
+                else
+                {
+                    btnRead.Enabled = true;
+                    btnUpdate.Enabled = true;
+                    btnDelete.Enabled = true;
+                    CurrentGrid.OrderId = int.Parse(dgvOrders.Rows[0].Cells[0].Value.ToString());
+                    CurrentGrid.MemberId = int.Parse(dgvOrders.Rows[0].Cells[1].Value.ToString());
+                    CurrentGrid.OrderDate = DateTime.Parse(dgvOrders.Rows[0].Cells[2].Value.ToString());
+                    CurrentGrid.RequiredDate = null;
+                    CurrentGrid.ShippedDate = null;
+                    if (dgvOrders.Rows[0].Cells[3].Value != null)
+                    {
+                        CurrentGrid.RequiredDate = DateTime.Parse(dgvOrders.Rows[0].Cells[3].Value.ToString());
+                    }
+                    if (dgvOrders.Rows[0].Cells[4].Value != null)
+                    {
+                        CurrentGrid.ShippedDate = DateTime.Parse(dgvOrders.Rows[0].Cells[4].Value.ToString());
+                    }
+                    CurrentGrid.Freight = decimal.Parse(dgvOrders.Rows[0].Cells[5].Value.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private void frmOrders_Load(object sender, EventArgs e)
         {
-
+            LoadAllOrders();
+            dgvOrders.CurrentCell = dgvOrders.Rows[CurrentRow].Cells[CurrentColumn];
+            CurrentGrid.OrderId = int.Parse(dgvOrders.Rows[CurrentRow].Cells[0].Value.ToString());
+            CurrentGrid.MemberId = int.Parse(dgvOrders.Rows[CurrentRow].Cells[1].Value.ToString());
+            CurrentGrid.OrderDate = DateTime.Parse(dgvOrders.Rows[CurrentRow].Cells[2].Value.ToString());
+            CurrentGrid.RequiredDate = null;
+            CurrentGrid.ShippedDate = null;
+            if (dgvOrders.Rows[CurrentRow].Cells[3].Value != null)
+            {
+                CurrentGrid.RequiredDate = DateTime.Parse(dgvOrders.Rows[CurrentRow].Cells[3].Value.ToString());
+            }
+            if (dgvOrders.Rows[CurrentRow].Cells[4].Value != null)
+            {
+                CurrentGrid.ShippedDate = DateTime.Parse(dgvOrders.Rows[CurrentRow].Cells[4].Value.ToString());
+            }
+            CurrentGrid.Freight = decimal.Parse(dgvOrders.Rows[CurrentRow].Cells[5].Value.ToString());
         }
 
         private void frmOrders_FormClosing(object sender, FormClosingEventArgs e)
@@ -117,6 +212,44 @@ namespace SalesWinApp
                 frmMain frmMain = new();
                 frmMain.Show();
             }
+        }
+
+        private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < _orderRepository.GetOrders().Count)
+            {
+                btnRead.Enabled = true;
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true;
+                CurrentRow = e.RowIndex;
+                CurrentColumn = e.ColumnIndex;
+                CurrentGrid.OrderId = int.Parse(dgvOrders.Rows[e.RowIndex].Cells[0].Value.ToString());
+                CurrentGrid.MemberId = int.Parse(dgvOrders.Rows[e.RowIndex].Cells[1].Value.ToString());
+                CurrentGrid.OrderDate = DateTime.Parse(dgvOrders.Rows[e.RowIndex].Cells[2].Value.ToString());
+                CurrentGrid.RequiredDate = null;
+                CurrentGrid.ShippedDate = null;
+                if (dgvOrders.Rows[e.RowIndex].Cells[3].Value != null)
+                {
+                    CurrentGrid.RequiredDate = DateTime.Parse(dgvOrders.Rows[e.RowIndex].Cells[3].Value.ToString());
+                }
+                if (dgvOrders.Rows[e.RowIndex].Cells[4].Value != null)
+                {
+                    CurrentGrid.ShippedDate = DateTime.Parse(dgvOrders.Rows[e.RowIndex].Cells[4].Value.ToString());
+                }
+            }
+            else
+            {
+                btnRead.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+            }
+        }
+
+        private void dgvOrders_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        { 
+            this.dgvOrders.Columns[5].Visible = false;
+            this.dgvOrders.Columns[6].Visible = false;
+            this.dgvOrders.Columns[7].Visible = false;
         }
     }
 }

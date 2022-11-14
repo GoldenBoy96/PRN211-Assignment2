@@ -16,6 +16,8 @@ namespace SalesWinApp.Admin.Member_Management
     {
         public IMemberRepository _memberRepository;
 
+        public int CurrentRow { get; set; }
+        public int CurrentColumn { get; set; }
         public string tmpEmail { get; set; }
 
         public Member Member { get; set; }
@@ -37,13 +39,19 @@ namespace SalesWinApp.Admin.Member_Management
             {
                 frmMembers frmMembers = new()
                 {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
                     tmpEmail = tmpEmail
                 };
                 frmMembers.Show();
             }
             else
             {
-                frmMembers frmMembers = new();
+                frmMembers frmMembers = new()
+                {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn
+                };
                 frmMembers.Show();
             }
         }
@@ -71,7 +79,7 @@ namespace SalesWinApp.Admin.Member_Management
                     updateMember.CompanyName = txtCompanyName.Text;
                     updateMember.City = txtCity.Text;
                     updateMember.Country = txtCountry.Text;
-                    _memberRepository.Update(txtEmail.Text);
+                    _memberRepository.Update();
                     MessageBox.Show("Update successfully!");
                     btnClose_Click(sender, e);
                 }

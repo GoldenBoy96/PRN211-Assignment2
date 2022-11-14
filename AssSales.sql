@@ -32,7 +32,7 @@ CREATE TABLE [Order] (
 	OrderId INT IDENTITY (1, 1) NOT NULL,
 	MemberId INT NOT NULL REFERENCES Member(MemberId) on delete cascade on update cascade,
 	OrderDate DATETIME NOT NULL,
-	RequiredDare DATETIME,
+	RequiredDate DATETIME,
 	ShippedDate DATETIME,
 	Freight MONEY,
 
@@ -68,3 +68,4 @@ CREATE TABLE OrderDetail (
 )
 
 INSERT INTO OrderDetail VALUES (1, 1, 100, 1, 0)
+INSERT INTO OrderDetail VALUES (2, 2, 200, 3, 0)

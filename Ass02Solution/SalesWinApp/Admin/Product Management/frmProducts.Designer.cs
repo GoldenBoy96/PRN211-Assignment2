@@ -107,11 +107,13 @@
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Location = new System.Drawing.Point(36, 170);
             this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.ReadOnly = true;
             this.dgvProducts.RowHeadersWidth = 51;
             this.dgvProducts.RowTemplate.Height = 29;
             this.dgvProducts.Size = new System.Drawing.Size(729, 240);
             this.dgvProducts.TabIndex = 7;
-            this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
+            this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
+            this.dgvProducts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvProducts_DataBindingComplete);
             // 
             // txtSearch
             // 
@@ -128,7 +130,7 @@
             "By ID",
             "By Name",
             "By UnitPrice",
-            "By UnitInStock"});
+            "By UnitsInStock"});
             this.txtSearchCatagory.Location = new System.Drawing.Point(461, 106);
             this.txtSearchCatagory.Name = "txtSearchCatagory";
             this.txtSearchCatagory.Size = new System.Drawing.Size(129, 28);

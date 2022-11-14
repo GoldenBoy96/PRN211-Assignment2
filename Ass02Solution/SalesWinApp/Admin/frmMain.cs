@@ -50,6 +50,8 @@ namespace SalesWinApp
             {
                 frmProducts frmProducts = new()
                 {
+                    CurrentRow = 0,
+                    CurrentColumn = 0,
                     tmpEmail = tmpEmail
                 };
                 this.Hide();
@@ -57,7 +59,11 @@ namespace SalesWinApp
             }
             else
             {
-                frmProducts frmProducts = new();
+                frmProducts frmProducts = new()
+                {
+                    CurrentRow = 0,
+                    CurrentColumn = 0
+                };
                 this.Hide();
                 frmProducts.Show();
             }
@@ -122,6 +128,9 @@ namespace SalesWinApp
             {
                 frmSalesStatistics frmSalesStatistics = new()
                 {
+                    isSearched = false,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
                     tmpEmail = tmpEmail
                 };
                 this.Hide();
@@ -129,7 +138,12 @@ namespace SalesWinApp
             }
             else
             {
-                frmSalesStatistics frmSalesStatistics = new();
+                frmSalesStatistics frmSalesStatistics = new()
+                {
+                    isSearched = false,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now
+                };
                 this.Hide();
                 frmSalesStatistics.Show();
             }

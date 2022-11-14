@@ -36,6 +36,7 @@
             this.txtStartDate = new System.Windows.Forms.DateTimePicker();
             this.txtEndDate = new System.Windows.Forms.DateTimePicker();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnRead = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,11 +45,13 @@
             this.dgvSales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSales.Location = new System.Drawing.Point(40, 213);
             this.dgvSales.Name = "dgvSales";
+            this.dgvSales.ReadOnly = true;
             this.dgvSales.RowHeadersWidth = 51;
             this.dgvSales.RowTemplate.Height = 29;
             this.dgvSales.Size = new System.Drawing.Size(729, 240);
             this.dgvSales.TabIndex = 8;
-            this.dgvSales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSales_CellContentClick);
+            this.dgvSales.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSales_CellClick);
+            this.dgvSales.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSales_DataBindingComplete);
             // 
             // label1
             // 
@@ -63,9 +66,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(545, 121);
+            this.btnSearch.Location = new System.Drawing.Point(571, 124);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(135, 39);
+            this.btnSearch.Size = new System.Drawing.Size(110, 39);
             this.btnSearch.TabIndex = 10;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -95,7 +98,7 @@
             // 
             this.txtStartDate.Location = new System.Drawing.Point(218, 99);
             this.txtStartDate.Name = "txtStartDate";
-            this.txtStartDate.Size = new System.Drawing.Size(280, 27);
+            this.txtStartDate.Size = new System.Drawing.Size(313, 27);
             this.txtStartDate.TabIndex = 13;
             this.txtStartDate.ValueChanged += new System.EventHandler(this.txtStartDate_ValueChanged);
             // 
@@ -103,13 +106,13 @@
             // 
             this.txtEndDate.Location = new System.Drawing.Point(218, 158);
             this.txtEndDate.Name = "txtEndDate";
-            this.txtEndDate.Size = new System.Drawing.Size(280, 27);
+            this.txtEndDate.Size = new System.Drawing.Size(313, 27);
             this.txtEndDate.TabIndex = 14;
             this.txtEndDate.ValueChanged += new System.EventHandler(this.txtEndDate_ValueChanged);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(326, 490);
+            this.btnClose.Location = new System.Drawing.Point(459, 490);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(135, 39);
             this.btnClose.TabIndex = 15;
@@ -117,11 +120,22 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnRead
+            // 
+            this.btnRead.Location = new System.Drawing.Point(218, 490);
+            this.btnRead.Name = "btnRead";
+            this.btnRead.Size = new System.Drawing.Size(135, 39);
+            this.btnRead.TabIndex = 16;
+            this.btnRead.Text = "Read";
+            this.btnRead.UseVisualStyleBackColor = true;
+            this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
+            // 
             // frmSalesStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 562);
+            this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtEndDate);
             this.Controls.Add(this.txtStartDate);
@@ -151,5 +165,6 @@
         private DateTimePicker txtStartDate;
         private DateTimePicker txtEndDate;
         private Button btnClose;
+        private Button btnRead;
     }
 }

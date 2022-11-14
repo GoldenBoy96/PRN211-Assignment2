@@ -15,6 +15,8 @@ namespace SalesWinApp.Admin.Member_Management
     {
         public string tmpEmail { get; set; }
 
+        public int CurrentRow { get; set; }
+        public int CurrentColumn { get; set; }
         public Member Member { get; set; }
 
         public frmReadMember()
@@ -43,13 +45,19 @@ namespace SalesWinApp.Admin.Member_Management
             {
                 frmMembers frmMembers = new()
                 {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
                     tmpEmail = tmpEmail
                 };
                 frmMembers.Show();
             }
             else
             {
-                frmMembers frmMembers = new();
+                frmMembers frmMembers = new()
+                {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn
+                };
                 frmMembers.Show();
             }
         }

@@ -17,8 +17,11 @@ namespace SalesWinApp
     public partial class frmMembers : Form
     {
         public string tmpEmail { get; set; }
+        public int CurrentRow { get; set; }
+        public int CurrentColumn { get; set; }
 
         public IMemberRepository _memberRepository;
+        public IOrderRepository _orderRepository;
 
         BindingSource _source;
 
@@ -27,6 +30,7 @@ namespace SalesWinApp
         public frmMembers()
         {
             _memberRepository = new MemberRepository();
+            _orderRepository = new OrderRepository();
             InitializeComponent();
         }
 
@@ -37,6 +41,8 @@ namespace SalesWinApp
                 frmUpdateMember frmUpdateMember = new()
                 {
                     Member = CurrentGrid,
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
                     tmpEmail = tmpEmail
                 };
                 this.Hide();
@@ -44,7 +50,12 @@ namespace SalesWinApp
             }
             else
             {
-                frmUpdateMember frmUpdateMember = new();
+                frmUpdateMember frmUpdateMember = new()
+                {
+                    Member = CurrentGrid,
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                };
                 this.Hide();
                 frmUpdateMember.Show();
             }
@@ -57,6 +68,8 @@ namespace SalesWinApp
                 frmReadMember frmReadMember = new()
                 {
                     Member = CurrentGrid,
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
                     tmpEmail = tmpEmail
                 };
                 this.Hide();
@@ -64,7 +77,12 @@ namespace SalesWinApp
             }
             else
             {
-                frmReadMember frmReadMember = new();
+                frmReadMember frmReadMember = new()
+                {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
+                    Member = CurrentGrid
+                };
                 this.Hide();
                 frmReadMember.Show();
             }
@@ -76,6 +94,8 @@ namespace SalesWinApp
             {
                 frmAddMember frmAddMember = new() 
                 {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn,
                     tmpEmail = tmpEmail
                 };
                 this.Hide();
@@ -83,7 +103,11 @@ namespace SalesWinApp
             }
             else
             {
-                frmAddMember frmAddMember = new();
+                frmAddMember frmAddMember = new()
+                {
+                    CurrentRow = CurrentRow,
+                    CurrentColumn = CurrentColumn
+                };
                 this.Hide();
                 frmAddMember.Show();
             }
@@ -98,18 +122,33 @@ namespace SalesWinApp
         {
             if (CurrentGrid.Email != "admin@fstore.com")
             {
-                _memberRepository.Delete(CurrentGrid.Email);
+                var check = _orderRepository.GetOrders().FirstOrDefault(c => c.MemberId == CurrentGrid.MemberId);
+                if (check == null)
+                {
+                    _memberRepository.Delete(CurrentGrid.Email);
+                    LoadAllMembers();
+                }
+                else
+                {
+                    MessageBox.Show("This member cannot be deleted because there is an Order that involves them!");
+                }
             }
             else
             {
                 MessageBox.Show("You cannot delete an administrator!");
             }
-            LoadAllMembers();
         }
 
         private void frmMembers_Load(object sender, EventArgs e)
         {
             LoadAllMembers();
+            dgvMembers.CurrentCell = dgvMembers.Rows[CurrentRow].Cells[CurrentColumn];
+            CurrentGrid.MemberId = int.Parse(dgvMembers.Rows[CurrentRow].Cells[0].Value.ToString());
+            CurrentGrid.Email = dgvMembers.Rows[CurrentRow].Cells[1].Value.ToString();
+            CurrentGrid.CompanyName = dgvMembers.Rows[CurrentRow].Cells[2].Value.ToString();
+            CurrentGrid.City = dgvMembers.Rows[CurrentRow].Cells[3].Value.ToString();
+            CurrentGrid.Country = dgvMembers.Rows[CurrentRow].Cells[4].Value.ToString();
+            CurrentGrid.Password = dgvMembers.Rows[CurrentRow].Cells[5].Value.ToString();
         }
 
         private void LoadAllMembers()
@@ -125,11 +164,13 @@ namespace SalesWinApp
 
                 if (allMembers.Count() == 0)
                 {
+                    btnRead.Enabled = false;
                     btnDelete.Enabled = false;
                     btnUpdate.Enabled = false;
                 }
                 else
                 {
+                    btnRead.Enabled = true;
                     btnUpdate.Enabled = true;
                     btnDelete.Enabled = true;
                     CurrentGrid.MemberId = int.Parse(dgvMembers.Rows[0].Cells[0].Value.ToString());
@@ -153,12 +194,26 @@ namespace SalesWinApp
 
         private void dgvMembers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            CurrentGrid.MemberId = int.Parse(dgvMembers.Rows[e.RowIndex].Cells[0].Value.ToString());
-            CurrentGrid.Email = dgvMembers.Rows[e.RowIndex].Cells[1].Value.ToString();
-            CurrentGrid.CompanyName = dgvMembers.Rows[e.RowIndex].Cells[2].Value.ToString();
-            CurrentGrid.City = dgvMembers.Rows[e.RowIndex].Cells[3].Value.ToString();
-            CurrentGrid.Country = dgvMembers.Rows[e.RowIndex].Cells[4].Value.ToString();
-            CurrentGrid.Password = dgvMembers.Rows[e.RowIndex].Cells[5].Value.ToString();
+            if (e.RowIndex < _memberRepository.GetMembers().Count)
+            {
+                btnRead.Enabled = true;
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true;
+                CurrentRow = e.RowIndex;
+                CurrentColumn = e.ColumnIndex;
+                CurrentGrid.MemberId = int.Parse(dgvMembers.Rows[e.RowIndex].Cells[0].Value.ToString());
+                CurrentGrid.Email = dgvMembers.Rows[e.RowIndex].Cells[1].Value.ToString();
+                CurrentGrid.CompanyName = dgvMembers.Rows[e.RowIndex].Cells[2].Value.ToString();
+                CurrentGrid.City = dgvMembers.Rows[e.RowIndex].Cells[3].Value.ToString();
+                CurrentGrid.Country = dgvMembers.Rows[e.RowIndex].Cells[4].Value.ToString();
+                CurrentGrid.Password = dgvMembers.Rows[e.RowIndex].Cells[5].Value.ToString();
+            }
+            else
+            {
+                btnRead.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+            }
         }
 
         private void frmMembers_FormClosing(object sender, FormClosingEventArgs e)

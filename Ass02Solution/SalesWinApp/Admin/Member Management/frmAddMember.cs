@@ -32,8 +32,12 @@ namespace SalesWinApp.Admin.Member_Management
             return isValid;
         }
 
+        private bool isAdded = false;
+
         public IMemberRepository _memberRepository;
 
+        public int CurrentRow { get; set; }
+        public int CurrentColumn { get; set; }
         public string tmpEmail { get; set; }
 
         public frmAddMember()
@@ -49,18 +53,43 @@ namespace SalesWinApp.Admin.Member_Management
 
         private void frmAddMember_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tmpEmail != null)
+            if (isAdded)
             {
-                frmMembers frmMembers = new()
+                if (tmpEmail != null)
                 {
-                    tmpEmail = tmpEmail
-                };
-                frmMembers.Show();
+                    frmMembers frmMembers = new()
+                    {
+                        tmpEmail = tmpEmail
+                    };
+                    frmMembers.Show();
+                }
+                else
+                {
+                    frmMembers frmMembers = new();
+                    frmMembers.Show();
+                }
             }
             else
             {
-                frmMembers frmMembers = new();
-                frmMembers.Show();
+                if (tmpEmail != null)
+                {
+                    frmMembers frmMembers = new()
+                    {
+                        tmpEmail = tmpEmail,
+                        CurrentRow = CurrentRow,
+                        CurrentColumn = CurrentColumn
+                    };
+                    frmMembers.Show();
+                }
+                else
+                {
+                    frmMembers frmMembers = new()
+                    {
+                        CurrentRow = CurrentRow,
+                        CurrentColumn = CurrentColumn
+                    };
+                    frmMembers.Show();
+                }
             }
         }
 
@@ -84,6 +113,7 @@ namespace SalesWinApp.Admin.Member_Management
                         };
                         _memberRepository.Create(member);
                         MessageBox.Show("Added successfully!");
+                        isAdded = true;
                         btnClose_Click(sender, e);
                     }
                     else

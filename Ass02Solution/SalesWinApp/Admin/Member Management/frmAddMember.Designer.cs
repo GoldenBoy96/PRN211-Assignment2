@@ -160,6 +160,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnClose);
             this.Name = "frmAddMember";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Member";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddMember_FormClosing);
             this.Load += new System.EventHandler(this.frmAddMember_Load);

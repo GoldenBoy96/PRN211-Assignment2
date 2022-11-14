@@ -78,7 +78,7 @@ namespace SalesWinApp.Normal_User
                         Member.CompanyName = txtCompanyName.Text;
                         Member.City = txtCity.Text;
                         Member.Country = txtCountry.Text;
-                        _memberRepository.Update(tmpEmail);
+                        _memberRepository.Update();
                         MessageBox.Show("Update successfully!");
                         btnClose_Click(sender, e);
                     }
