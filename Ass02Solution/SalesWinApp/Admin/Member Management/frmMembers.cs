@@ -126,6 +126,7 @@ namespace SalesWinApp
                 if (check == null)
                 {
                     _memberRepository.Delete(CurrentGrid.Email);
+                    MessageBox.Show("Delete successfully!");
                     LoadAllMembers();
                 }
                 else

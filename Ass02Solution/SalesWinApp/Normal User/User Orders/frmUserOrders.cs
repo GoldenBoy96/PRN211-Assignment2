@@ -18,6 +18,7 @@ namespace SalesWinApp.Normal_User
         public IMemberRepository _memberRepository { get; set; }
         public IOrderRepository _orderRepository;
         public IOrderDetailRepository _orderDetailRepository;
+        private bool isNull = true;
 
         BindingSource _source;
 
@@ -48,21 +49,29 @@ namespace SalesWinApp.Normal_User
         private void frmUserOrders_Load(object sender, EventArgs e)
         {
             LoadAllOrders();
-            dgvOrders.CurrentCell = dgvOrders.Rows[CurrentRow].Cells[CurrentColumn];
-            CurrentGrid.OrderId = int.Parse(dgvOrders.Rows[CurrentRow].Cells[0].Value.ToString());
-            CurrentGrid.MemberId = int.Parse(dgvOrders.Rows[CurrentRow].Cells[1].Value.ToString());
-            CurrentGrid.OrderDate = DateTime.Parse(dgvOrders.Rows[CurrentRow].Cells[2].Value.ToString());
-            CurrentGrid.RequiredDate = null;
-            CurrentGrid.ShippedDate = null;
-            if (dgvOrders.Rows[CurrentRow].Cells[3].Value != null)
+            if (!isNull)
             {
-                CurrentGrid.RequiredDate = DateTime.Parse(dgvOrders.Rows[CurrentRow].Cells[3].Value.ToString());
+                dgvOrders.CurrentCell = dgvOrders.Rows[CurrentRow].Cells[CurrentColumn];
+                CurrentGrid.OrderId = int.Parse(dgvOrders.Rows[CurrentRow].Cells[0].Value.ToString());
+                CurrentGrid.MemberId = int.Parse(dgvOrders.Rows[CurrentRow].Cells[1].Value.ToString());
+                CurrentGrid.OrderDate = DateTime.Parse(dgvOrders.Rows[CurrentRow].Cells[2].Value.ToString());
+                CurrentGrid.RequiredDate = null;
+                CurrentGrid.ShippedDate = null;
+                if (dgvOrders.Rows[CurrentRow].Cells[3].Value != null)
+                {
+                    CurrentGrid.RequiredDate = DateTime.Parse(dgvOrders.Rows[CurrentRow].Cells[3].Value.ToString());
+                }
+                if (dgvOrders.Rows[CurrentRow].Cells[4].Value != null)
+                {
+                    CurrentGrid.ShippedDate = DateTime.Parse(dgvOrders.Rows[CurrentRow].Cells[4].Value.ToString());
+                }
+                CurrentGrid.Freight = decimal.Parse(dgvOrders.Rows[CurrentRow].Cells[5].Value.ToString());
             }
-            if (dgvOrders.Rows[CurrentRow].Cells[4].Value != null)
+            else
             {
-                CurrentGrid.ShippedDate = DateTime.Parse(dgvOrders.Rows[CurrentRow].Cells[4].Value.ToString());
+                MessageBox.Show("You don't have any Orders!");
+                btnClose_Click(sender, e);
             }
-            CurrentGrid.Freight = decimal.Parse(dgvOrders.Rows[CurrentRow].Cells[5].Value.ToString());
         }
 
         private void LoadAllOrders()
@@ -83,6 +92,7 @@ namespace SalesWinApp.Normal_User
                 }
                 else
                 {
+                    isNull = false;
                     btnRead.Enabled = true;
                     CurrentGrid.OrderId = int.Parse(dgvOrders.Rows[0].Cells[0].Value.ToString());
                     CurrentGrid.MemberId = int.Parse(dgvOrders.Rows[0].Cells[1].Value.ToString());

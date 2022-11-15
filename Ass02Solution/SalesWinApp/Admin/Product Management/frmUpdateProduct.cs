@@ -23,6 +23,7 @@ namespace SalesWinApp.Admin.Product_Management
         public int CurrentColumn { get; set; }
         public int searchCategory { get; set; }
         public string searchValue { get; set; }
+        public bool NeedRefresh = false;
 
         public frmUpdateProduct()
         {
@@ -41,9 +42,11 @@ namespace SalesWinApp.Admin.Product_Management
             {
                 frmProducts frmProducts = new()
                 {
+                    NeedRefresh = NeedRefresh,
                     CurrentRow = CurrentRow,
                     CurrentColumn = CurrentColumn,
                     searchCategory = searchCategory,
+                    searchValue = searchValue,
                     tmpEmail = tmpEmail
                 };
                 frmProducts.Show();
@@ -52,8 +55,10 @@ namespace SalesWinApp.Admin.Product_Management
             {
                 frmProducts frmProducts = new()
                 {
+                    NeedRefresh = NeedRefresh,
                     CurrentRow = CurrentRow,
                     CurrentColumn = CurrentColumn,
+                    searchValue = searchValue,
                     searchCategory = searchCategory
                 };
                 frmProducts.Show();
@@ -81,12 +86,24 @@ namespace SalesWinApp.Admin.Product_Management
                 {
                     if (checkName == null || checkName.ProductName == Product.ProductName)
                     {
+                        if (!txtProductName.Text.ToLower().Trim().Contains(searchValue.ToLower().Trim()) && searchCategory == 1)
+                        {
+                            NeedRefresh = true;
+                        }
                         if (double.TryParse(txtWeight.Text, out _) && double.Parse(txtWeight.Text) >= 0)
                         {
                             if (decimal.TryParse(txtUnitPrice.Text, out _) && decimal.Parse(txtUnitPrice.Text) >= 0)
                             {
+                                if (!txtUnitPrice.ToString().Contains(searchValue.Trim()) && searchCategory == 2)
+                                {
+                                    NeedRefresh = true;
+                                }
                                 if (int.TryParse(txtUnitInStock.Text, out _) && int.Parse(txtUnitInStock.Text) >= 0)
                                 {
+                                    if (!txtUnitInStock.ToString().Contains(searchValue.Trim()) && searchCategory == 3)
+                                    {
+                                        NeedRefresh = true;
+                                    }
                                     updateProduct.ProductName = txtProductName.Text;
                                     updateProduct.Weight = txtWeight.Text;
                                     updateProduct.UnitPrice = decimal.Parse(txtUnitPrice.Text);

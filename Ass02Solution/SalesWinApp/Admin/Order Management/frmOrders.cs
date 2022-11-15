@@ -72,6 +72,7 @@ namespace SalesWinApp
         {
             _orderDetailRepository.Delete(CurrentGrid.OrderId);
             _orderRepository.Delete(CurrentGrid.OrderId);
+            MessageBox.Show("Delete successfully!");
             LoadAllOrders();
         }
 
