@@ -252,7 +252,7 @@ namespace SalesWinApp.Admin
 
         private void dgvSales_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < _orderRepository.GetOrders().Count)
+            if (e.RowIndex < _orderRepository.GetOrders().Count && e.RowIndex >= 0)
             {
                 btnRead.Enabled = true;
                 CurrentRow = e.RowIndex;

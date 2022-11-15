@@ -194,7 +194,7 @@ namespace SalesWinApp
 
         private void dgvMembers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < _memberRepository.GetMembers().Count)
+            if (e.RowIndex < _memberRepository.GetMembers().Count && e.RowIndex >= 0)
             {
                 btnRead.Enabled = true;
                 btnUpdate.Enabled = true;

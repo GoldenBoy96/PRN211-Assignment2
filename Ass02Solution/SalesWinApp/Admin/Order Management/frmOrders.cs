@@ -216,7 +216,7 @@ namespace SalesWinApp
 
         private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < _orderRepository.GetOrders().Count)
+            if (e.RowIndex < _orderRepository.GetOrders().Count && e.RowIndex >= 0)
             {
                 btnRead.Enabled = true;
                 btnUpdate.Enabled = true;
