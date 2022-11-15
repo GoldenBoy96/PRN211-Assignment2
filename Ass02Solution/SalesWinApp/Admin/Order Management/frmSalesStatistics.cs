@@ -128,11 +128,19 @@ namespace SalesWinApp.Admin
                 else
                 {
                     MessageBox.Show("No result!");
+                    dgvSales.Rows.Clear();
+                    dgvSales.Refresh();
+                    dgvSales.DataSource = null;
+                    btnRead.Enabled = false;
                 }
             }
             else
             {
                 MessageBox.Show("StartDate cannot be later than EndDate!");
+                dgvSales.Rows.Clear();
+                dgvSales.Refresh();
+                dgvSales.DataSource = null;
+                btnRead.Enabled = false;
             }
         }
 
@@ -212,10 +220,13 @@ namespace SalesWinApp.Admin
         {
             txtStartDate.Text = StartDate.ToString();
             txtEndDate.Text = EndDate.ToString();
-            LoadAllOrdersBySearch();
             if (!isSearched)
             {
                 LoadAllOrders();
+            }
+            else
+            {
+                LoadAllOrdersBySearch();
             }
             dgvSales.CurrentCell = dgvSales.Rows[CurrentRow].Cells[CurrentColumn];
             CurrentGrid.OrderId = int.Parse(dgvSales.Rows[CurrentRow].Cells[0].Value.ToString());
