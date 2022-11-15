@@ -47,7 +47,7 @@
             this.dgvMembers.RowHeadersWidth = 51;
             this.dgvMembers.RowTemplate.Height = 29;
             this.dgvMembers.Size = new System.Drawing.Size(729, 240);
-            this.dgvMembers.TabIndex = 0;
+            this.dgvMembers.TabIndex = 6;
             this.dgvMembers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMembers_CellClick);
             this.dgvMembers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvMembers_DataBindingComplete);
             // 
@@ -56,7 +56,7 @@
             this.btnCreate.Location = new System.Drawing.Point(257, 381);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(120, 35);
-            this.btnCreate.TabIndex = 1;
+            this.btnCreate.TabIndex = 2;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
@@ -66,7 +66,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(433, 381);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(120, 35);
-            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -76,7 +76,7 @@
             this.btnDelete.Location = new System.Drawing.Point(600, 381);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(120, 35);
-            this.btnDelete.TabIndex = 3;
+            this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -86,7 +86,7 @@
             this.btnClose.Location = new System.Drawing.Point(343, 454);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(120, 35);
-            this.btnClose.TabIndex = 4;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -96,7 +96,7 @@
             this.btnRead.Location = new System.Drawing.Point(83, 381);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(120, 35);
-            this.btnRead.TabIndex = 5;
+            this.btnRead.TabIndex = 1;
             this.btnRead.Text = "Read";
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
@@ -108,7 +108,7 @@
             this.label1.Location = new System.Drawing.Point(233, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(345, 45);
-            this.label1.TabIndex = 6;
+            
             this.label1.Text = "Member Management";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 

@@ -2,6 +2,7 @@
 {
     partial class frmLogin
     {
+
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -28,6 +29,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.KeyPreview = true;
+
             this.label1 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -108,6 +111,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLogin_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

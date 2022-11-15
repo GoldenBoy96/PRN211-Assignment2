@@ -58,32 +58,33 @@
             this.btnMemberManagement.UseVisualStyleBackColor = true;
             this.btnMemberManagement.Click += new System.EventHandler(this.btnMemberManagement_Click);
             // 
-            // btnOrderManagement
-            // 
-            this.btnOrderManagement.Location = new System.Drawing.Point(176, 277);
-            this.btnOrderManagement.Name = "btnOrderManagement";
-            this.btnOrderManagement.Size = new System.Drawing.Size(453, 35);
-            this.btnOrderManagement.TabIndex = 2;
-            this.btnOrderManagement.Text = "Order Management";
-            this.btnOrderManagement.UseVisualStyleBackColor = true;
-            this.btnOrderManagement.Click += new System.EventHandler(this.btnOrderManagement_Click);
-            // 
             // btnProductManagement
             // 
             this.btnProductManagement.Location = new System.Drawing.Point(176, 200);
             this.btnProductManagement.Name = "btnProductManagement";
             this.btnProductManagement.Size = new System.Drawing.Size(453, 35);
-            this.btnProductManagement.TabIndex = 3;
+            this.btnProductManagement.TabIndex = 2;
             this.btnProductManagement.Text = "Product Management";
             this.btnProductManagement.UseVisualStyleBackColor = true;
             this.btnProductManagement.Click += new System.EventHandler(this.btnProductManagement_Click);
+            // 
+            // btnOrderManagement
+            // 
+            this.btnOrderManagement.Location = new System.Drawing.Point(176, 277);
+            this.btnOrderManagement.Name = "btnOrderManagement";
+            this.btnOrderManagement.Size = new System.Drawing.Size(453, 35);
+            this.btnOrderManagement.TabIndex = 3;
+            this.btnOrderManagement.Text = "Order Management";
+            this.btnOrderManagement.UseVisualStyleBackColor = true;
+            this.btnOrderManagement.Click += new System.EventHandler(this.btnOrderManagement_Click);
+            
             // 
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(176, 422);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(453, 35);
-            this.btnClose.TabIndex = 4;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -93,7 +94,7 @@
             this.btnLogout.Location = new System.Drawing.Point(663, 45);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(107, 39);
-            this.btnLogout.TabIndex = 5;
+            this.btnLogout.TabIndex = 6;
             this.btnLogout.Text = "Log out";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
@@ -103,7 +104,7 @@
             this.btnStatistics.Location = new System.Drawing.Point(176, 350);
             this.btnStatistics.Name = "btnStatistics";
             this.btnStatistics.Size = new System.Drawing.Size(453, 35);
-            this.btnStatistics.TabIndex = 6;
+            this.btnStatistics.TabIndex = 4;
             this.btnStatistics.Text = "Sales Statistics";
             this.btnStatistics.UseVisualStyleBackColor = true;
             this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
