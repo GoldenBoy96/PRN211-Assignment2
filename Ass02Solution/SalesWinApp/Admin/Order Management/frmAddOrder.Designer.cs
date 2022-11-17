@@ -67,6 +67,7 @@
             // txtMemberID
             // 
             this.txtMemberID.Location = new System.Drawing.Point(166, 132);
+            this.txtMemberID.MaxLength = 30;
             this.txtMemberID.Name = "txtMemberID";
             this.txtMemberID.Size = new System.Drawing.Size(208, 27);
             this.txtMemberID.TabIndex = 16;
@@ -104,6 +105,7 @@
             // txtProductID
             // 
             this.txtProductID.Location = new System.Drawing.Point(166, 231);
+            this.txtProductID.MaxLength = 30;
             this.txtProductID.Name = "txtProductID";
             this.txtProductID.Size = new System.Drawing.Size(208, 27);
             this.txtProductID.TabIndex = 20;
@@ -141,6 +143,7 @@
             // txtUnitPrice
             // 
             this.txtUnitPrice.Location = new System.Drawing.Point(535, 253);
+            this.txtUnitPrice.MaxLength = 15;
             this.txtUnitPrice.Name = "txtUnitPrice";
             this.txtUnitPrice.Size = new System.Drawing.Size(208, 27);
             this.txtUnitPrice.TabIndex = 30;
@@ -159,6 +162,7 @@
             // txtFreight
             // 
             this.txtFreight.Location = new System.Drawing.Point(535, 203);
+            this.txtFreight.MaxLength = 15;
             this.txtFreight.Name = "txtFreight";
             this.txtFreight.Size = new System.Drawing.Size(208, 27);
             this.txtFreight.TabIndex = 28;
@@ -207,6 +211,7 @@
             // txtQuantity
             // 
             this.txtQuantity.Location = new System.Drawing.Point(535, 304);
+            this.txtQuantity.MaxLength = 15;
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(208, 27);
             this.txtQuantity.TabIndex = 34;
@@ -225,6 +230,7 @@
             // txtDiscount
             // 
             this.txtDiscount.Location = new System.Drawing.Point(535, 355);
+            this.txtDiscount.MaxLength = 15;
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(208, 27);
             this.txtDiscount.TabIndex = 36;

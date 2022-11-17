@@ -54,13 +54,13 @@ namespace SalesWinApp
                             {
                                 tmpEmail = tmpEmail
                             };
-                            MessageBox.Show("Login successfully!\nYour role: Admin");
+                            MessageBox.Show("    Login successfully!   ");
                             this.Hide();
                             frmMain.Show();
                         }
                         else {
                             frmMain frmMain = new();
-                            MessageBox.Show("Login successfully!\nYour role: Admin");
+                            MessageBox.Show("    Login successfully!   ");
                             this.Hide();
                             frmMain.Show();
                         }
@@ -73,14 +73,14 @@ namespace SalesWinApp
                             {
                                 tmpEmail = tmpEmail
                             };
-                            MessageBox.Show("Login successfully!\nYour role: Normal User");
+                            MessageBox.Show("    Login successfully!   ");
                             this.Hide();
                             frmUserMain.Show();
                         }
                         else
                         {
                             frmUserMain frmUserMain = new();
-                            MessageBox.Show("Login successfully!\nYour role: Normal User");
+                            MessageBox.Show("    Login successfully!   ");
                             this.Hide();
                             frmUserMain.Show();
                         }

@@ -45,6 +45,7 @@
             // txtUnitInStock
             // 
             this.txtUnitInStock.Location = new System.Drawing.Point(172, 315);
+            this.txtUnitInStock.MaxLength = 15;
             this.txtUnitInStock.Name = "txtUnitInStock";
             this.txtUnitInStock.Size = new System.Drawing.Size(251, 27);
             this.txtUnitInStock.TabIndex = 35;
@@ -61,6 +62,7 @@
             // txtUnitPrice
             // 
             this.txtUnitPrice.Location = new System.Drawing.Point(172, 249);
+            this.txtUnitPrice.MaxLength = 15;
             this.txtUnitPrice.Name = "txtUnitPrice";
             this.txtUnitPrice.Size = new System.Drawing.Size(251, 27);
             this.txtUnitPrice.TabIndex = 33;
@@ -77,6 +79,7 @@
             // txtWeight
             // 
             this.txtWeight.Location = new System.Drawing.Point(172, 183);
+            this.txtWeight.MaxLength = 20;
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Size = new System.Drawing.Size(251, 27);
             this.txtWeight.TabIndex = 31;
@@ -93,6 +96,7 @@
             // txtProductName
             // 
             this.txtProductName.Location = new System.Drawing.Point(172, 117);
+            this.txtProductName.MaxLength = 40;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(251, 27);
             this.txtProductName.TabIndex = 29;

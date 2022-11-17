@@ -50,8 +50,9 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(152, 40);
+            this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.PlaceholderText = "Enter member email";
+            this.txtEmail.PlaceholderText = "Enter email";
             this.txtEmail.Size = new System.Drawing.Size(211, 27);
             this.txtEmail.TabIndex = 2;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
@@ -59,9 +60,10 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(152, 88);
+            this.txtPassword.MaxLength = 30;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.PlaceholderText = "Enter member password";
+            this.txtPassword.PlaceholderText = "Enter password";
             this.txtPassword.Size = new System.Drawing.Size(211, 27);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
