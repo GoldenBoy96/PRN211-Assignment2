@@ -40,7 +40,7 @@ CREATE TABLE [Order] (
 )
 
 INSERT INTO [Order] VALUES (1, GETDATE(), null, null, 100)
-INSERT INTO [Order] VALUES (2, GETDATE(), null, null, 2000)
+INSERT INTO [Order] VALUES (2, GETDATE(), null, null, 600)
 
 GO
 CREATE TABLE Product(

@@ -10,36 +10,29 @@ namespace DataAccess.Repository
     public class MemberRepository : IMemberRepository
     {
 
-        private AssSalesContext _db;
-
-        public MemberRepository()
-        {
-            _db = new();
-        }
-
         public void Create(Member member)
         {
-            _db.Add(member);
-            _db.SaveChanges();
+            AssSalesContext.Instance.Add(member);
+            AssSalesContext.Instance.SaveChanges();
         }
 
         public void Delete(string email)
         {
             Member member = GetMember(email);
-            _db.Remove(member);
-            _db.SaveChanges();
+            AssSalesContext.Instance.Remove(member);
+            AssSalesContext.Instance.SaveChanges();
         }
 
         public Member GetMember(string email)
         {
-            return _db.Members.ToList().FirstOrDefault(c => c.Email.Equals(email));
+            return AssSalesContext.Instance.Members.ToList().FirstOrDefault(c => c.Email.Equals(email));
         }
 
-        public List<Member> GetMembers() => this._db.Members.ToList();
+        public List<Member> GetMembers() => AssSalesContext.Instance.Members.ToList();
 
         public void Update()
         {
-            _db.SaveChanges();
+            AssSalesContext.Instance.SaveChanges();
         }
     }
 }

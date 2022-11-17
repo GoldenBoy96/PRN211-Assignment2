@@ -10,36 +10,30 @@ namespace DataAccess.Repository
 {
     public class OrderRepository : IOrderRepository
     {
-        private AssSalesContext _db;
-
-        public OrderRepository()
-        {
-            _db = new AssSalesContext();
-        }
 
         public void Create(Order order)
         {
-            _db.Add(order);
-            _db.SaveChanges();
+            AssSalesContext.Instance.Add(order);
+            AssSalesContext.Instance.SaveChanges();
         }
 
         public void Delete(int id)
         {
             Order order = GetOrder(id);
-            _db.Remove(order);
-            _db.SaveChanges();
+            AssSalesContext.Instance.Remove(order);
+            AssSalesContext.Instance.SaveChanges();
         }
 
         public Order GetOrder(int id)
         {
-            return _db.Orders.ToList().FirstOrDefault(c => c.OrderId == id);
+            return AssSalesContext.Instance.Orders.ToList().FirstOrDefault(c => c.OrderId == id);
         }
 
-        public List<Order> GetOrders() => this._db.Orders.ToList();
+        public List<Order> GetOrders() => AssSalesContext.Instance.Orders.ToList();
 
         public void Update()
         {
-            _db.SaveChanges();
+            AssSalesContext.Instance.SaveChanges();
         }
     }
 }

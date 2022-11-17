@@ -7,9 +7,43 @@ namespace DataAccess.Models;
 
 public partial class AssSalesContext : DbContext
 {
-    public AssSalesContext()
+
+    //singleton pattern
+    // Create an private static instance to access database following Singleton pattern
+    private static AssSalesContext instance = null;
+
+    //using lock to prevent multithread
+    private static readonly object instanceLock = new object();
+
+    //create private constructor
+    //private constructor is used to prevent user from 
+    //creating instances with new() keyword
+    private AssSalesContext()
     {
     }
+
+    //Tao property Instance de ket noi database
+    public static AssSalesContext Instance
+    {
+        //using lock to prevent multithread
+        //It keeps separate threads from creating new instances of the singleton at the same time
+        get
+        {
+            if (instance == null) // check instance before lock will save source rather than implement a lock
+                                  //This technique call Double-Check Locking
+            {
+                lock (instanceLock)
+                {
+                    if (instance == null) // Check instance twice here to make sure no error occur when get instance
+                    {
+                        instance = new AssSalesContext();
+                    }
+                }
+            }
+            return instance;
+        }
+    }
+
 
     public AssSalesContext(DbContextOptions<AssSalesContext> options)
         : base(options)

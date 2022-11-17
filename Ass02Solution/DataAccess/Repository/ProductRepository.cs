@@ -9,36 +9,30 @@ namespace DataAccess.Repository
 {
     public class ProductRepository : IProductRepository
     {
-        private AssSalesContext _db;
-
-        public ProductRepository()
-        {
-            _db = new AssSalesContext();
-        }
 
         public void Create(Product product)
         {
-            _db.Add(product);
-            _db.SaveChanges();
+            AssSalesContext.Instance.Add(product);
+            AssSalesContext.Instance.SaveChanges();
         }
 
         public void Delete(int id)
         {
             Product product = GetProduct(id);
-            _db.Remove(product);
-            _db.SaveChanges();
+            AssSalesContext.Instance.Remove(product);
+            AssSalesContext.Instance.SaveChanges();
         }
 
         public Product GetProduct(int id)
         {
-            return _db.Products.ToList().FirstOrDefault(c => c.ProductId == id);
+            return AssSalesContext.Instance.Products.ToList().FirstOrDefault(c => c.ProductId == id);
         }
 
-        public List<Product> GetProducts() => this._db.Products.ToList();
+        public List<Product> GetProducts() => AssSalesContext.Instance.Products.ToList();
 
         public void Update()
         {
-            _db.SaveChanges();
+            AssSalesContext.Instance.SaveChanges();
         }
     }
 }
