@@ -63,6 +63,12 @@ namespace SalesWinApp.Admin.Member_Management
             txtCompanyName.Text = Member.CompanyName;
             txtCity.Text = Member.City;
             txtCountry.Text = Member.Country;
+            if (Member.Email == "admin@fstore.com")
+            {
+                var admin = _memberRepository.GetMembers().SingleOrDefault(c => c.Email == Member.Email);
+                txtPassword.Text = admin.Password;
+                txtPassword.ReadOnly = false;
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -77,6 +83,10 @@ namespace SalesWinApp.Admin.Member_Management
                     updateMember.CompanyName = txtCompanyName.Text;
                     updateMember.City = txtCity.Text;
                     updateMember.Country = txtCountry.Text;
+                    if (tmpEmail == "admin@fstore.com")
+                    {
+                        updateMember.Password = txtPassword.Text;
+                    }
                     _memberRepository.Update();
                     MessageBox.Show("Update successfully!");
                     btnClose_Click(sender, e);
@@ -86,6 +96,16 @@ namespace SalesWinApp.Admin.Member_Management
                     MessageBox.Show("All fields are required!");
                 }
             }
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
