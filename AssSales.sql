@@ -64,7 +64,7 @@ CREATE TABLE OrderDetail (
 	Quantity INT NOT NULL,
 	Discount FLOAT NOT NULL
 
-	CONSTRAINT PK_OrderDetail PRIMARY KEY (OrderId)
+	CONSTRAINT PK_OrderDetail PRIMARY KEY (OrderId, ProductId)
 )
 
 INSERT INTO OrderDetail VALUES (1, 1, 100, 1, 0)

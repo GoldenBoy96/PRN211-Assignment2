@@ -13,6 +13,8 @@ namespace SalesWinApp
         public frmLogin()
         {
             InitializeComponent();
+            txtEmail.Text = "admin@fstore.com";
+            txtPassword.Text = "admin@@";
             _memberRepository = new MemberRepository();
         }
 
