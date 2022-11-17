@@ -149,7 +149,6 @@ namespace SalesWinApp
             CurrentGrid.CompanyName = dgvMembers.Rows[CurrentRow].Cells[2].Value.ToString();
             CurrentGrid.City = dgvMembers.Rows[CurrentRow].Cells[3].Value.ToString();
             CurrentGrid.Country = dgvMembers.Rows[CurrentRow].Cells[4].Value.ToString();
-            CurrentGrid.Password = dgvMembers.Rows[CurrentRow].Cells[5].Value.ToString();
         }
 
         private void LoadAllMembers()
@@ -179,7 +178,6 @@ namespace SalesWinApp
                     CurrentGrid.CompanyName = dgvMembers.Rows[0].Cells[2].Value.ToString();
                     CurrentGrid.City = dgvMembers.Rows[0].Cells[3].Value.ToString();
                     CurrentGrid.Country = dgvMembers.Rows[0].Cells[4].Value.ToString();
-                    CurrentGrid.Password = dgvMembers.Rows[0].Cells[5].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -207,7 +205,6 @@ namespace SalesWinApp
                 CurrentGrid.CompanyName = dgvMembers.Rows[e.RowIndex].Cells[2].Value.ToString();
                 CurrentGrid.City = dgvMembers.Rows[e.RowIndex].Cells[3].Value.ToString();
                 CurrentGrid.Country = dgvMembers.Rows[e.RowIndex].Cells[4].Value.ToString();
-                CurrentGrid.Password = dgvMembers.Rows[e.RowIndex].Cells[5].Value.ToString();
             }
             else
             {
@@ -237,6 +234,7 @@ namespace SalesWinApp
         private void dgvMembers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             this.dgvMembers.Columns["Orders"].Visible = false;
+            this.dgvMembers.Columns["Password"].Visible = false;
         }
     }
 }

@@ -33,7 +33,6 @@ namespace SalesWinApp.Admin.Member_Management
         {
             txtMemberID.Text = Member.MemberId.ToString();
             txtEmail.Text = Member.Email;
-            txtPassword.Text = Member.Password;
             txtCompanyName.Text = Member.CompanyName;
             txtCity.Text = Member.City;
             txtCountry.Text = Member.Country;

@@ -98,7 +98,7 @@ namespace SalesWinApp.Admin.Member_Management
             var checkEmail = _memberRepository.GetMembers()
                 .Where(c => c.Email.Trim().ToLower().Equals(txtEmail.Text.Trim().ToLower()))
                 .SingleOrDefault();
-            if (txtEmail.Text != "" && txtCompanyName.Text != "" && txtCity.Text != "" && txtCountry.Text != "" && txtPassword.Text != "")
+            if (txtEmail.Text != "" && txtCompanyName.Text != "" && txtCity.Text != "" && txtCountry.Text != "")
             {
                 if (checkEmail == null)
                 {

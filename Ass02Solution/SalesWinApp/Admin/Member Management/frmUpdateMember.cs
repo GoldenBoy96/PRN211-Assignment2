@@ -60,7 +60,6 @@ namespace SalesWinApp.Admin.Member_Management
         {
             txtMemberID.Text = Member.MemberId.ToString();
             txtEmail.Text = Member.Email;
-            txtPassword.Text = Member.Password;
             txtCompanyName.Text = Member.CompanyName;
             txtCity.Text = Member.City;
             txtCountry.Text = Member.Country;
@@ -71,11 +70,10 @@ namespace SalesWinApp.Admin.Member_Management
             var updateMember = _memberRepository.GetMembers().SingleOrDefault(c => c.Email == Member.Email);
             if (updateMember != null)
             {
-                if (txtCompanyName.Text != "" && txtCity.Text != "" && txtPassword.Text != "" && txtCountry.Text != "")
+                if (txtCompanyName.Text != "" && txtCity.Text != "" && txtCountry.Text != "")
                 {
                     updateMember.MemberId = int.Parse(txtMemberID.Text);
                     updateMember.Email = txtEmail.Text;
-                    updateMember.Password = txtPassword.Text;
                     updateMember.CompanyName = txtCompanyName.Text;
                     updateMember.City = txtCity.Text;
                     updateMember.Country = txtCountry.Text;

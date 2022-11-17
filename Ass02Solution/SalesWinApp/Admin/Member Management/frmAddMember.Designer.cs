@@ -44,9 +44,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(309, 372);
+            this.btnClose.Location = new System.Drawing.Point(270, 279);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(127, 40);
+            this.btnClose.Size = new System.Drawing.Size(111, 30);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -54,89 +55,97 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(195, 112);
+            this.txtPassword.Location = new System.Drawing.Point(171, 84);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(289, 27);
+            this.txtPassword.ReadOnly = true;
+            this.txtPassword.Size = new System.Drawing.Size(253, 23);
             this.txtPassword.TabIndex = 23;
+            this.txtPassword.Text = "123";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 115);
+            this.label5.Location = new System.Drawing.Point(40, 86);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 20);
+            this.label5.Size = new System.Drawing.Size(57, 15);
             this.label5.TabIndex = 22;
             this.label5.Text = "Password";
             // 
             // txtCountry
             // 
-            this.txtCountry.Location = new System.Drawing.Point(195, 298);
+            this.txtCountry.Location = new System.Drawing.Point(171, 224);
+            this.txtCountry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCountry.Name = "txtCountry";
-            this.txtCountry.Size = new System.Drawing.Size(289, 27);
+            this.txtCountry.Size = new System.Drawing.Size(253, 23);
             this.txtCountry.TabIndex = 21;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 301);
+            this.label6.Location = new System.Drawing.Point(40, 226);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 20);
+            this.label6.Size = new System.Drawing.Size(50, 15);
             this.label6.TabIndex = 20;
             this.label6.Text = "Country";
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(195, 237);
+            this.txtCity.Location = new System.Drawing.Point(171, 178);
+            this.txtCity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(289, 27);
+            this.txtCity.Size = new System.Drawing.Size(253, 23);
             this.txtCity.TabIndex = 19;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 240);
+            this.label3.Location = new System.Drawing.Point(40, 180);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 20);
+            this.label3.Size = new System.Drawing.Size(28, 15);
             this.label3.TabIndex = 18;
             this.label3.Text = "City";
             // 
             // txtCompanyName
             // 
-            this.txtCompanyName.Location = new System.Drawing.Point(195, 175);
+            this.txtCompanyName.Location = new System.Drawing.Point(171, 131);
+            this.txtCompanyName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCompanyName.Name = "txtCompanyName";
-            this.txtCompanyName.Size = new System.Drawing.Size(289, 27);
+            this.txtCompanyName.Size = new System.Drawing.Size(253, 23);
             this.txtCompanyName.TabIndex = 17;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 178);
+            this.label4.Location = new System.Drawing.Point(40, 134);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 20);
+            this.label4.Size = new System.Drawing.Size(94, 15);
             this.label4.TabIndex = 16;
             this.label4.Text = "Company Name";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(195, 50);
+            this.txtEmail.Location = new System.Drawing.Point(171, 38);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(289, 27);
+            this.txtEmail.Size = new System.Drawing.Size(253, 23);
             this.txtEmail.TabIndex = 15;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 53);
+            this.label2.Location = new System.Drawing.Point(40, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 20);
+            this.label2.Size = new System.Drawing.Size(36, 15);
             this.label2.TabIndex = 14;
             this.label2.Text = "Email";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(102, 373);
+            this.btnAdd.Location = new System.Drawing.Point(89, 280);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(127, 40);
+            this.btnAdd.Size = new System.Drawing.Size(111, 30);
             this.btnAdd.TabIndex = 24;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -144,9 +153,9 @@
             // 
             // frmAddMember
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 460);
+            this.ClientSize = new System.Drawing.Size(465, 345);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label5);
@@ -159,6 +168,7 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnClose);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmAddMember";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Member";
